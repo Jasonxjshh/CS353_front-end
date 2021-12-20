@@ -1,0 +1,71 @@
+<tbody>
+          <tr v-for="info in data" :key="info.id">
+            <td>Sensor {{ info.id }}</td>
+            <td><div :class="info.isRunning ? 'green' : 'red'"></div></td>
+            <td>
+              <router-link :to="{ name: 'axiosTest' }"
+                ><button class="startButton" @click="startButton"></button
+              ></router-link>
+            </td>
+            <td><button class="stopButton"></button></td>
+            <td>{{ info.ppm }}</td>
+            <td>{{ info.temperature }}</td>
+            <td>{{ info.humidity }}</td>
+            <td>
+              <!-- <router-link to="{name:'Thedetails',query:{sensorId:1}}"> -->
+              <!-- <router-link to="{name:'Thedetails',params:{id:1}}"> -->
+              <router-link
+                :to="{
+                  name: 'Thedetails',
+                  params: { sensorId: info.id },
+                }"
+                class="viewMore"
+              >
+                <!-- <router-link to="/details"> -->
+                details
+              </router-link>
+            </td>
+          </tr>
+        </tbody>
+
+
+<!-- :to="{ name: 'humidityComponent', params: { sensorId: 1 } }" -->
+ <router-link
+          :to="{
+            name: 'co2Component',
+          }"
+          class="detailsButton"
+        >
+          co<sub>2</sub>
+        </router-link>
+        <!-- params: { sensorId: this.$route.params.sensorId }, -->
+        <router-link
+          :to="{
+            name: 'temperatureComponent',
+          }"
+          class="detailsButton"
+        >
+          temperature
+        </router-link>
+        <!-- v-bind="$attrs" -->
+        <router-link
+          :to="{
+            name: 'humidityComponent',
+          }"
+          class="detailsButton"
+        >
+          humidity
+        </router-link>
+
+
+whole:
+<div class="leftComponent">
+      <div class="content">
+        <h1>{{ sid }}</h1>
+        <!-- :to="{ name: 'humidityComponent', params: { sensorId: 1 } }" -->
+       
+      </div>
+    </div>
+    <div class="rightComponent">
+      <router-view :sid="sid"></router-view>
+    </div>
